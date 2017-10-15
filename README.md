@@ -20,3 +20,4 @@
 ## 関連する英単語
 * Duplicate: 複写・コピー
 * rigidbody: 剛体
+* emisson: 放射
