@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-    public float speed = 5;
+    public float playerSpeed = 5;
+    public GameObject bullet;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    IEnumerator Start()
+    {
+        while (true)
+        {
+            Instantiate(bullet, transform.position, transform.rotation);
+            yield return new WaitForSeconds(0.01f);
+        }
+    }
+
 	
 	// Update is called once per frame
 	void Update () {
@@ -20,6 +26,6 @@ public class Player : MonoBehaviour {
         Vector2 direction = new Vector2(playerX, playerY).normalized;
         
         // 移動する向きとスピードを代入する
-        GetComponent<Rigidbody2D>().velocity = direction * speed;
+        GetComponent<Rigidbody2D>().velocity = direction * playerSpeed;
 	}
 }
