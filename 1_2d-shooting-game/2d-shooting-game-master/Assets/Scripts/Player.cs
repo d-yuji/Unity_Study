@@ -12,7 +12,7 @@ public class Player : MonoBehaviour {
         while (true)
         {
             Instantiate(bullet, transform.position, transform.rotation);
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.05f);
         }
     }
 
