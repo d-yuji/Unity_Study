@@ -3,18 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour {
-    public bool DontDestoryEnabled = true;
-
-	// Use this for initialization
-	void Start () {
-        if (DontDestoryEnabled)
+    //public bool DontDestoryEnabled = true;
+    static SoundManager _instance = null;
+    static SoundManager instance
+    {
+        get { return _instance ?? (_instance = FindObjectOfType<SoundManager>()); }
+    }
+    void Awake()
+    {
+        if (this != instance)
         {
-            DontDestroyOnLoad(this);
-        }	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+            Destroy(gameObject);
+            return;
+        }
+        DontDestroyOnLoad(gameObject);
+    }
+    void OnDestroy()
+    {
+        if (this == instance) _instance = null;
+    }
+
 }
