@@ -11,11 +11,11 @@ public class GameController : MonoBehaviour {
     private float timeOut = 5.0f;
     private float timeTrigger;
 
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update () {
         int count = GameObject.FindGameObjectsWithTag("Item").Length;
         scoreLabel.text = count.ToString();
-        if(count == 0)
+        if (count == 0)
         {
             timeTrigger += Time.deltaTime;
             finishLabelObject.SetActive(true);

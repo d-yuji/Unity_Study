@@ -91,7 +91,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1727428700986106}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: bf6e4fd9390622141b05a21b93ff8ab9, type: 3}
@@ -176,6 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba10d244959d4754e87d455dc074f862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destorysound: {fileID: 8300000, guid: 7de6ef4318d54ad448c35e68179923aa, type: 3}
 --- !u!136 &136043691655124500
 CapsuleCollider:
   m_ObjectHideFlags: 1

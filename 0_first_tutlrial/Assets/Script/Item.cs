@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Item : MonoBehaviour {
-    //private AudioSource destorysound;
+    public AudioClip destorysound;
     private void Start()
     {
         //destorysound = GetComponent<AudioSource>();
@@ -12,6 +12,7 @@ public class Item : MonoBehaviour {
     {
         if(hit.CompareTag("Player"))
         {
+            AudioSource.PlayClipAtPoint(destorysound, transform.position);
             Destroy(gameObject);
         }
     }

@@ -107,3 +107,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac7466bb6f790a546b080bc3b960a463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collisionSE: {fileID: 8300000, guid: 2150895b3daba8a4d910f215d4e7630e, type: 3}
