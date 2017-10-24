@@ -14,12 +14,28 @@ public class Bullet : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        foreach (Transform child in transform)
+        int ObjCount = this.transform.childCount;
+        if (ObjCount == 0)
         {
-            if (!child.gameObject.GetComponent<SpriteRenderer>().isVisible)
+            DestroyInvisibleObject(this.gameObject);
+        }
+        else
+        {
+            foreach (Transform child in transform)
             {
-                Destroy(this.gameObject);
+                DestroyInvisibleObject(child.gameObject);
+                if (!child.gameObject.GetComponent<SpriteRenderer>().isVisible)
+                {
+                    Destroy(this.gameObject);
+                }//TODO 処理の共通化
             }
         }
 	}
+    void DestroyInvisibleObject(GameObject obj)
+    {
+        if (!obj.GetComponent<SpriteRenderer>().isVisible)
+        {
+            Destroy(obj.gameObject);
+        }
+    }
 }

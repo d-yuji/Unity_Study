@@ -11,6 +11,11 @@ public class Enemy : MonoBehaviour {
         spaceship = GetComponent<Spaceship>();
         spaceship.Move(transform.up * -1);
 
+        if (!spaceship.canShot)
+        {
+            yield break;
+        }
+
         while (true)
         {
             for(int i = 0; i < transform.childCount; i++)
