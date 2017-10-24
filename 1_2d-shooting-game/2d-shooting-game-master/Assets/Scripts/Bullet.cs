@@ -23,7 +23,7 @@ public class Bullet : MonoBehaviour {
         {
             foreach (Transform child in transform)
             {
-                DestroyInvisibleObject(child.gameObject);
+                //DestroyInvisibleObject(child.gameObject);
                 if (!child.gameObject.GetComponent<SpriteRenderer>().isVisible)
                 {
                     Destroy(this.gameObject);
