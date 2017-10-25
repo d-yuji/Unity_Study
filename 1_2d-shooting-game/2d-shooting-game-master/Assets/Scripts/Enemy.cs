@@ -27,9 +27,20 @@ public class Enemy : MonoBehaviour {
             yield return new WaitForSeconds(spaceship.shotDelay);
         }
 	}
-	
-	// Update is called once per frame
-	void Update () {
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        string layerName = LayerMask.LayerToName(collision.gameObject.layer);
+        if(layerName != "Bullet(Player)")
+        {
+            print(layerName);
+            return;
+        }
+        Destroy(collision.gameObject);
+        spaceship.Explosion();
+        Destroy(gameObject);
+    }
+    // Update is called once per frame
+    void Update () {
 		
 	}
 }

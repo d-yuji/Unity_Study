@@ -14,8 +14,8 @@ public class Bullet : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        int ObjCount = this.transform.childCount;
-        if (ObjCount == 0)
+        //int ObjCount = this.transform.childCount;
+        /*if (ObjCount == 0)
         {
             DestroyInvisibleObject(this.gameObject);
         }
@@ -29,7 +29,7 @@ public class Bullet : MonoBehaviour {
                     Destroy(this.gameObject);
                 }//TODO 処理の共通化
             }
-        }
+        }*/
 	}
     void DestroyInvisibleObject(GameObject obj)
     {

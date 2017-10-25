@@ -29,9 +29,24 @@ public class Player : MonoBehaviour {
 	}
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(collision.gameObject);
-        print(collision.gameObject.name);
-        spaceship.Explosion();
-        Destroy(gameObject);
+        // レイヤー名を取得
+        string layerName = LayerMask.LayerToName(collision.gameObject.layer);
+
+        // レイヤー名がBullet (Enemy)の時は弾を削除
+        if (layerName == "Bullet (Enemy)")
+        {
+            // 弾の削除
+            Destroy(collision.gameObject);
+        }
+
+        // レイヤー名がBullet (Enemy)またはEnemyの場合は爆発
+        if (layerName == "Bullet(Enemy)" || layerName == "Enemy")
+        {
+            // 爆発する
+            spaceship.Explosion();
+
+            // プレイヤーを削除
+            Destroy(gameObject);
+        }
     }
 }
