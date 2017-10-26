@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour {
 	// Use this for initialization
 	IEnumerator Start () {
         spaceship = GetComponent<Spaceship>();
-        spaceship.Move(transform.up * -1);
+        Move(transform.up * -1);
 
         if (!spaceship.canShot)
         {
@@ -27,6 +27,11 @@ public class Enemy : MonoBehaviour {
             yield return new WaitForSeconds(spaceship.shotDelay);
         }
 	}
+    public void Move(Vector2 dir)
+    {
+        GetComponent<Rigidbody2D>().velocity = dir * spaceship.speed;
+    }
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         string layerName = LayerMask.LayerToName(collision.gameObject.layer);
