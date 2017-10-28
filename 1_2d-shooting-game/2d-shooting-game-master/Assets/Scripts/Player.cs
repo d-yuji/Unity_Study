@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
     Spaceship spaceship;
-
     IEnumerator Start()
     {
         spaceship = GetComponent<Spaceship>();
@@ -58,9 +57,10 @@ public class Player : MonoBehaviour {
         {
             // 爆発する
             spaceship.Explosion();
-
+            FindObjectOfType<Manager>().GameOver();
             // プレイヤーを削除
             Destroy(gameObject);
+            
         }
     }
 }

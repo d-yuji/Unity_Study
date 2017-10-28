@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
 
     Spaceship spaceship;
+    public int hp = 1;
 
 	// Use this for initialization
 	IEnumerator Start () {
@@ -40,9 +41,22 @@ public class Enemy : MonoBehaviour {
             print(layerName);
             return;
         }
+
+        Transform playerBulletTransform = collision.transform.parent;
+        Bullet bullet = playerBulletTransform.GetComponent<Bullet>();
+
+        hp = hp - bullet.power;
+
         Destroy(collision.gameObject);
-        spaceship.Explosion();
-        Destroy(gameObject);
+        if (hp <= 0)
+        {
+            spaceship.Explosion();
+            Destroy(gameObject);
+        }
+        else
+        {
+            spaceship.GetAnimator().SetTrigger("Damage");
+        }
     }
     // Update is called once per frame
     void Update () {

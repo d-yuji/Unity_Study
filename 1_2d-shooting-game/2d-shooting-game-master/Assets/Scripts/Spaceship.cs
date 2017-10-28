@@ -11,6 +11,7 @@ public class Spaceship : MonoBehaviour {
     public GameObject bullet;
     public bool canShot;
     public GameObject explosion;
+    private Animator animator;
 
     public void Explosion()
     {
@@ -27,11 +28,16 @@ public class Spaceship : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        animator = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+    public Animator GetAnimator()
+    {
+        return animator;
+    }
 }

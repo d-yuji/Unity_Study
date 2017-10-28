@@ -5,6 +5,8 @@ using UnityEngine;
 public class Bullet : MonoBehaviour {
 
     public int speed = 10;
+    //public float lifetime = 1;
+    public int power = 1;
 
 	// Use this for initialization
 	void Start () {
