@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+    Rigidbody2D playerRigidbody2D;
+    public float jumpValue = 500;
 	// Use this for initialization
 	void Start () {
-		
+        playerRigidbody2D = GetComponent<Rigidbody2D>();
 	}
 	
 	// Update is called once per frame
@@ -18,10 +20,9 @@ public class Player : MonoBehaviour {
         float speed = 10;
         pos += direction * speed * Time.deltaTime;
         transform.position = pos;
-
         if (Input.GetKeyDown("space"))
         {
-            print("test");
+            playerRigidbody2D.AddForce(Vector2.up * jumpValue);
         }
-	}
+    }
 }
