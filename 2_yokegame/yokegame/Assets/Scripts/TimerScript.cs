@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class TimerScript : MonoBehaviour {
-    private float time = 100;
+    private float time = 150;
 	// Use this for initialization
 	void Start () {
         GetComponent<Text>().text = ((int)time).ToString();
@@ -15,7 +15,8 @@ public class TimerScript : MonoBehaviour {
         time -= Time.deltaTime;
         if(time < 0)
         {
-            time = 0;
+            FindObjectOfType<Player>().TimeOver();
+            Destroy(gameObject);
         }
         GetComponent<Text>().text = ((int)time).ToString();
     }

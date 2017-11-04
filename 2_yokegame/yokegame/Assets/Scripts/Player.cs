@@ -26,13 +26,20 @@ public class Player : MonoBehaviour {
             cameraPos.x = transform.position.x + 4;
             Camera.main.transform.position = cameraPos;
         }
+        if (transform.position.y > Camera.main.transform.position.y - 3)
+        {
+            Vector3 cameraPos = Camera.main.transform.position;
+            cameraPos.y = transform.position.y + 2;
+            Camera.main.transform.position = cameraPos;
+        }
         if (isGround)
         {
-            if (transform.localEulerAngles.z > 45 || transform.localEulerAngles.z < -45)
+            if (transform.localEulerAngles.z > 60 || transform.localEulerAngles.z < -60)
             {
                 print("test_rotation");
-                FindObjectOfType<Manager>().GameOver();
-                Destroy(gameObject);
+                transform.localEulerAngles.Set(0, 0, 0);
+                //FindObjectOfType<Manager>().GameOver();
+                //Destroy(gameObject);
                 //Game over
             }
             playerRigidbody2D.AddForce(moveForce * (Vector2.right * playerX * moveSpeed - playerRigidbody2D.velocity));
@@ -51,5 +58,22 @@ public class Player : MonoBehaviour {
         {
             isGround = true;
         }
+        else if (collision.gameObject.tag == "Goal")
+        {
+            Destroy(collision.gameObject);
+            FindObjectOfType<Manager>().GameClear();
+            Destroy(gameObject);
+        }
+        else if(collision.gameObject.tag == "Item")
+        {
+            jumpValue = 850;
+            FindObjectOfType<Manager>().playSound();
+            Destroy(collision.gameObject);
+        }
+    }
+    public void TimeOver()
+    {
+        FindObjectOfType<Manager>().GameOver();
+        Destroy(gameObject);
     }
 }
