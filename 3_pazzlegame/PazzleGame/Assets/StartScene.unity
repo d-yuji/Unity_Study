@@ -252,6 +252,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 210210138}
+  - component: {fileID: 210210139}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -272,6 +273,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &210210139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 210210137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e8a20a3e2181194b9d832d77f907e58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 206280012}
+  score: {fileID: 0}
+  title: {fileID: 0}
+  Blocks:
+  - {fileID: 1964531105924702, guid: 0c7433038644d084faaac07207a61759, type: 2}
+  - {fileID: 1937171027650964, guid: 97d427c68c87e724ab923dac7ab66043, type: 2}
+  - {fileID: 1028614209960846, guid: af7ed1809859e2a4d9e69d7f2d91a223, type: 2}
+  - {fileID: 1413069858717864, guid: 81d0807084da6c248accc973f0843136, type: 2}
+  - {fileID: 1992603242284430, guid: 6934d910c423cee47bd63bef9552d06c, type: 2}
 --- !u!1 &237244770
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,7 +472,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &460242548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -516,7 +537,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 460242547}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 512, y: 384, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1282881245}
@@ -1287,7 +1308,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1893253883213478, guid: 22dce853ba804e4419e21ebdf6865a27, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22dce853ba804e4419e21ebdf6865a27, type: 2}

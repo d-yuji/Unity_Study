@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 8e8a20a3e2181194b9d832d77f907e58
+timeCreated: 1509956899
+licenseType: Free
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - player: {instanceID: 0}
+  - score: {instanceID: 0}
+  - title: {instanceID: 0}
+  - testBlock: {fileID: 1964531105924702, guid: 0c7433038644d084faaac07207a61759,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
