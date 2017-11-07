@@ -11,6 +11,10 @@ public class Block : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (!gameObject.GetComponent<SpriteRenderer>().isVisible)
+        {
+            print(gameObject.name);
+            //Destroy(gameObject);
+        }
 	}
 }
