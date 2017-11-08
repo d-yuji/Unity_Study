@@ -29,9 +29,7 @@ public class Player : MonoBehaviour {
             if(tempXR > waitTime)
             {
                 pos += Vector2.right;
-                Vector3 temp = transform.localScale;
-                temp.x = playerScale;
-                transform.localScale = temp;
+                playerDir(this.gameObject,playerX);
                 tempXR = 0;
             }
         }
@@ -41,9 +39,7 @@ public class Player : MonoBehaviour {
             if (tempXL > waitTime)
             {
                 pos += Vector2.left;
-                Vector3 temp = transform.localScale;
-                temp.x = -playerScale;
-                transform.localScale = temp;
+                playerDir(this.gameObject,playerX);
                 tempXL = 0;
             }
         }
@@ -65,6 +61,36 @@ public class Player : MonoBehaviour {
                 tempYD = 0;
             }
         }
-        transform.position = pos;
+
+        //移動制限
+        pos.x = Mathf.Clamp(pos.x, -3.5f, 3.5f);
+        pos.y = Mathf.Clamp(pos.y, -3.5f, 3.5f);
+        if (canWalk(pos))
+        {
+            transform.position = pos;
+        }
+
 	}
+    void playerDir(GameObject gameObject,float playerX)
+    {
+        Vector3 temp = gameObject.transform.localScale;
+        if (playerX > 0)
+        {
+            temp.x = playerScale;
+        }else if(playerX < 0)
+        {
+            temp.x = -playerScale;
+        }
+        gameObject.transform.localScale = temp;
+        return;
+    }
+
+    bool canWalk(Vector2 pos)
+    {
+        int bx = (int)(3.5f - pos.x);
+        int by = (int)(3.5f - pos.y);
+        print(pos.x+" "+pos.y+","+bx+" "+by);
+        return FindObjectOfType<Manager>().isBlock(bx,by);
+        ;
+    }
 }
