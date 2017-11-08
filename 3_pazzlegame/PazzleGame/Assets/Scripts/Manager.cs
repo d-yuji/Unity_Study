@@ -14,8 +14,10 @@ public class Manager : MonoBehaviour {
 
     public float timeOut;
     private float timeElapsed = 0;
-
+    private int [,] blockReachFlag = new int[9,9];
     public GameObject[,] blockArrays = new GameObject[9,9];
+
+    private int chain;
 
     // Use this for initialization
     void Start () {
@@ -24,7 +26,13 @@ public class Manager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        for (int i = 0; i<9;i++)
+        {
+            for(int j = 0; j < 9; j++)
+            {
+                blockReachFlag[i, j] = 0;
+            }
+        }
         if (IsPlaying() == false && Input.GetKeyDown(KeyCode.X))
         {
             GameStart();
@@ -34,22 +42,37 @@ public class Manager : MonoBehaviour {
             timeElapsed += Time.deltaTime;
             if (timeElapsed >= timeOut)
             {
-                int rand = Random.Range(0, 7);
-                int randB = Random.Range(0, 4);
+                int chain = 0;
+                //生成
+                int rand = Random.Range(0, 8);
+                int randB = Random.Range(0, 3);
                 GameObject block = Instantiate(Blocks[randB], new Vector3(createX[rand], createY, 0), Blocks[randB].transform.rotation);
-                int temp;
-                for (int i = 7; i >= 0; i--)
+
+                // TODO 当たり判定の再帰化
+                //全位置調整=>全当たり判定=>スコア加算=>再帰
+
+                int temp = fixBlockPosition(block, rand);
+                int count = checkBlock(rand, temp, block);
+                //print("count=" + count);
+
+                if (count >= 3)
                 {
-                    temp = i;
-                    if (blockArrays[rand, temp] == null)
+                    for (int i = 0; i < 9; i++)
                     {
-                        blockArrays[rand, temp] = block;
-                        Vector2 tempVec = block.transform.position;
-                        tempVec.y = 3.5f - i;
-                        block.transform.position = tempVec;
-                        break;
+                        for (int j = 0; j < 9; j++)
+                        {
+                            if(blockReachFlag[i, j] == 2)
+                            {
+                                Destroy(blockArrays[i, j]);
+                            }
+                        }
                     }
                 }
+                chain++;
+
+                //スコア加算
+                
+                
                 timeElapsed = 0.0f;
             }
         }
@@ -84,5 +107,49 @@ public class Manager : MonoBehaviour {
         {
             return false;
         }
+    }
+    int checkBlock(int x,int y,GameObject gameObject)
+    {
+        if(x<0 || y <0 || x > 7 || y > 7)
+        {
+            return 0;
+        }
+        else if (blockReachFlag[x, y] > 0)
+        {
+            return 0;
+        }
+        else
+        {
+            blockReachFlag[x, y] = 1;
+            if (blockArrays[x,y] != null && blockArrays[x,y].tag == gameObject.tag)
+            {
+                blockReachFlag[x, y] = 2;
+                return 1 + checkBlock(x + 1, y,gameObject) + checkBlock(x - 1, y,gameObject) + checkBlock(x, y + 1,gameObject) + checkBlock(x, y - 1,gameObject);
+            }
+        }
+        return 0;
+    }
+    int fixBlockPosition(GameObject block,int x)
+    {
+        int temp = 8;
+
+        //位置調整
+        for (int i = 7; i >= 0; i--)
+        {
+            temp = i;
+            if (blockArrays[x, temp] == null)
+            {
+                blockArrays[x, temp] = block;
+                Vector2 tempVec = block.transform.position;
+                tempVec.y = 3.5f - i;
+                block.transform.position = tempVec;
+                break;
+            }
+        }
+        return temp;
+    }
+    void chainCheck()
+    {
+        
     }
 }
