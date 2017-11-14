@@ -22,6 +22,40 @@ public class Player : MonoBehaviour {
         float playerY = Input.GetAxisRaw("Vertical");
         Vector2 pos = transform.position;
 
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Vector2 postemp = gameObject.transform.position;
+            Vector3 dir = gameObject.transform.localScale;
+            if (dir.x > 0)
+            {
+                postemp.x += 1;
+                if (!canWalk(postemp))
+                {
+                    int bx = (int)(3.5f + postemp.x);
+                    int by = (int)(3.5f - postemp.y);
+                    print(bx + "," + by);
+                    if (bx >= 0 && by >= 0)
+                    {
+                        FindObjectOfType<Manager>().removeBlock(bx, by);
+                    }
+                 }
+            }
+            else if (dir.x < 0)
+            {
+                postemp.x -= 1;
+                if (!canWalk(postemp))
+                {
+                    int bx = (int)(3.5f + postemp.x);
+                    int by = (int)(3.5f - postemp.y);
+                    print(bx + "," + by);
+                    if (bx >= 0 && by >= 0)
+                    {
+                        FindObjectOfType<Manager>().removeBlock(bx, by);
+                    }
+                }
+            }
+        }
+
         //pos += new Vector2(playerX, playerY) * speed * Time.deltaTime;
         if (playerX > 0)
         {
@@ -62,6 +96,7 @@ public class Player : MonoBehaviour {
             }
         }
 
+
         //移動制限
         pos.x = Mathf.Clamp(pos.x, -3.5f, 3.5f);
         pos.y = Mathf.Clamp(pos.y, -3.5f, 3.5f);
@@ -87,10 +122,13 @@ public class Player : MonoBehaviour {
 
     bool canWalk(Vector2 pos)
     {
-        int bx = (int)(3.5f - pos.x);
+        int bx = (int)(3.5f + pos.x);
         int by = (int)(3.5f - pos.y);
-        print(pos.x+" "+pos.y+","+bx+" "+by);
+        //print(pos.x+" "+pos.y+","+bx+" "+by);
         return FindObjectOfType<Manager>().isBlock(bx,by);
-        ;
+    }
+    public void gameOver()
+    {
+        Destroy(gameObject);
     }
 }
